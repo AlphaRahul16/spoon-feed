@@ -1,0 +1,17 @@
+execution:
+  - executor: locust
+    concurrency:
+      local: 100
+      cloud: 50
+    hold-for: 5m30s
+    ramp-up: 10s
+    scenario:
+      script: KCommunicationLoadTest.py
+      default-address: https://qa-api.mykaarma.com/communications
+
+provisioning: cloud
+modules:
+  cloud:
+    token: '7a2e91c16a56e04716eb9d9a:a46309b69e3275d9403151a2b72d06bfb65a6aa4caf5fc3fb88ac238540629ce4cc1a69c'
+    timeout: 10s
+
