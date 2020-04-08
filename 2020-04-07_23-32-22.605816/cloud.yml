@@ -1,0 +1,49 @@
+---
+execution:
+- concurrency: 5
+  executor: locust
+  hold-for: 1m30s
+  locations:
+    us-central1-a: 1
+  ramp-up: 10s
+  scenario: RoLoad.py
+local-bzt-version: 1.13.9
+modules:
+  cloud:
+    default-location: us-central1-a
+    timeout: 10s
+  consolidator:
+    percentiles:
+    - 0.0
+    - 50.0
+    - 90.0
+    - 95.0
+    - 99.0
+    - 99.9
+    - 100.0
+reporting:
+- module: final-stats
+- module: console
+scenarios:
+  RoLoad.py:
+    default-address: http://192.168.22.116:3002
+    script: RoLoad.py
+services:
+- local:
+  - metrics:
+    - cpu
+    - mem
+    - bytes-sent
+    - bytes-recv
+    - disk-read
+    - disk-write
+    - disk-space
+    - engine-loop
+    - conn-all
+  module: monitoring
+settings:
+  default-executor: jmeter
+  env:
+    OBJC_DISABLE_INITIALIZE_FORK_SAFETY: 'YES'
+    TAURUS_ARTIFACTS_DIR: /Users/rahul/PycharmProjects/pythonMobilePOC/2020-04-07_23-32-22.605816
+

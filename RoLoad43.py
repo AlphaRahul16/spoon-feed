@@ -10,7 +10,7 @@ class MyTaskSet(TaskSet):
         randnum = fake.ean8()
         Lname = fake.name()
         Fname = fake.company()
-        date = "2019-12-19"
+        date = "2020-04-08"
         ApptTime = date
         ro = "RO-{}".format(randnum)
         Status = "READYFORPICKUP"
