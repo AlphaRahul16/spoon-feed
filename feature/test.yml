@@ -1,0 +1,30 @@
+config:
+  env: local
+  browser: chrome
+  driverAddress: /Users/rahul/IdeaProjects/qa-automation/ui_automation_engine/drivers/chromedriver
+  #driverAddress: http://192.168.21.185:4444/wd/hub
+name:
+  TestQA
+
+task:
+  - launch_browser
+  - open_url:
+      url: https://app.mykaarma.com
+  - fill_data:
+      xpath: //*[@id='firstPhaseInputs']//input[@placeholder='Username']
+      value: prakash54 # should be $username ?
+  - click_button:
+      xpath: //*[@id='bSignIn']
+  - fill_data:
+      xpath: //*[@id='password']
+      value: Pt@12345 # should be $password ?
+  - click_button:
+      xpath: //*[@id='bchromedriverSignIn']
+  - validate_ui_element:
+      mode: equals
+      xpath: //div[@class='headertoprightDealerName']
+      value: myKaarma
+  - click_button:
+      xpath: //*[text()='Sign Out']
+
+  - quit_browser
